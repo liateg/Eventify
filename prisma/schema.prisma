@@ -13,3 +13,25 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+// schema.prisma
+
+
+enum Role {
+  ORGANIZER
+  ATTENDER
+}
+
+
+model User {
+  id           String   @id @default(uuid())
+  email        String?  @unique
+  phoneNumber  String   @unique
+  passwordHash String
+  name         String
+  role         Role     @default(ATTENDER)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+
