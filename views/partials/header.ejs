@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eventify</title>
+
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo carter-one-regular">Eventify</div>
+    <ul id="menu">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Events</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="#">Sign In</a>
+      <a href="#" class="register-btn">Register</a>
+      <div class="cart">
+        🛒
+        <span class="cart-badge">0</span>
+      </div>
+      <div class="hamburger" id="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Discover & Create Amazing Events</h1>
+    <p>The complete platform for event discovery, ticket booking, and event management</p>
+    <input type="text" class="search-box" placeholder="Search events by name, category, or location...">
+    <div class="buttons">
+      <button class="btn btn-browse">Browse Events</button>
+      <button class="btn btn-create">Create Event</button>
+    </div>
+  </section>
+
+  <script>
+    // Toggle menu for mobile
+    const hamburger = document.getElementById("hamburger");
+    const menu = document.getElementById("menu");
+
+    hamburger.addEventListener("click", () => {
+      menu.classList.toggle("active");
+    });
+  </script>
+
+</body>
+</html>
