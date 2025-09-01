@@ -1,0 +1,98 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-straight/css/uicons-thin-straight.css'>
+    <link rel="stylesheet" href="/style.css">
+    <title>Eegister</title>
+ </head>
+ <body>
+    <div class="welcome-text">
+  <h1>Welcome to <span class="carter-one-regular">Evntify</span></h1>
+  <p>Your all-in-one platform for discovering, booking, managing, and creating events.</p>
+</div>
+
+   <div class="wrapper">
+       <div id="notification"></div>
+    <div class="container">
+        <div class="role">
+            <div class="atendee" id="atendee">
+<i class="fi fi-tr-users"></i>
+<h1>Atendee</h1>
+<p>Discover and Book Events</p>
+
+            </div>
+             <div class="organizer" id="organizer">
+                <i class="fi fi-ts-target-audience m"></i>
+                <h1>Organizer</h1>
+                <p>Create and Manage Events</p>
+            </div>
+        </div>
+        <form action="/user/register" method="POST" class="form-card">
+  <!-- Name -->
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" placeholder="Sarah" required>
+
+  <!-- Phone Number -->
+  <label for="phone">Phone Number:</label>
+  <input type="tel" 
+         id="phone" 
+         name="phoneNumber" 
+         value="+251" 
+         required 
+         pattern="^\+251[79][0-9]{8}$" 
+         placeholder="+2519--------">
+
+
+  <!-- Email -->
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" placeholder="Optional@example.com">
+        <!-- Role Dropdown -->
+        <label for="role">Role:</label>
+        <select id="role" name="role" required>
+          <option value="">Select your role</option>
+          <option value="Attendee">Attendee</option>
+          <option value="Organizer">Organizer</option>
+        </select>
+  <!-- Password -->
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" required minlength="6" placeholder="******">
+
+  <!-- Submit -->
+  <button type="submit" class="register-btn">Submit</button>
+</form>
+
+    </div>
+   </div>
+   <div id="notification"></div>
+
+<div id="notification"></div>
+
+<script>
+  const successMessages = <%- JSON.stringify(success) %>; // array from flash
+  const errorMessages = <%- JSON.stringify(error) %>;
+
+  const notification = document.getElementById("notification");
+
+  if (successMessages.length) {
+    notification.textContent = successMessages[0];
+    notification.style.backgroundColor = "#4caf50"; // green
+    notification.classList.add("show");
+  } else if (errorMessages.length) {
+    notification.textContent = errorMessages[0];
+    notification.style.backgroundColor = "#f44336"; // red
+    notification.classList.add("show");
+  }
+
+  setTimeout(() => {
+    notification.classList.remove("show");
+  }, 7000);
+</script>
+
+
+ </body>
+ </html>
