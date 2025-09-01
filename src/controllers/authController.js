@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import {checkPasswor, hash_Password} from "../utils/passwordUtils.js"
-import { tr } from "zod/locales";
-import { success } from "zod";
+// import { tr } from "zod/locales";
+// import { success } from "zod";
 import jwt from "jsonwebtoken"
 
 const prisma = new PrismaClient();
@@ -10,7 +10,7 @@ const prisma = new PrismaClient();
 export const registerUser=async (req,res)=>{
     try{
         const {name,email,phoneNumber,role,password}=req.body
-        console.log(req.body)
+        // console.log(req.body)
         const userId=await userExists(phoneNumber)
         
 if(!userId){
