@@ -8,7 +8,9 @@
  <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
- <link rel="stylesheet" href="style.css">
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
@@ -21,21 +23,32 @@
       <li><a href="#">About</a></li>
     </ul>
     <div class="nav-right">
-      <a href="#">Sign In</a>
-      <a href="#" class="register-btn">Register</a>
-      <div class="cart">
-        🛒
-        <span class="cart-badge">0</span>
-      </div>
-      <div class="hamburger" id="hamburger">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </div>
+  <form action="/login" method="get" style="display:inline; margin-right: 10px;" id="login">
+  <button type="submit" class="sign-in-btn onboard">
+    <i class="fi fi-tr-user-time"></i> Sign In
+  </button>
+</form>
+
+<form action="/register" method="get" style="display:inline;" id="register">
+  <button type="submit" class="register-btn onboard">Register</button>
+</form>
+
+  <!-- Cart -->
+  <div class="cart">
+    <i class="fi fi-tr-shopping-cart"></i>
+    <span class="cart-badge">0</span>
   </div>
 
-  
+  <!-- Hamburger -->
+  <div class="hamburger" id="hamburger">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+
+  </div>
+
 
 </body>
 </html>
