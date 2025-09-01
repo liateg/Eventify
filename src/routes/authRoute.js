@@ -6,5 +6,5 @@ import {registerUser,loginUser} from "../controllers/authController.js"
 import { validateRegister,validateLogin } from "../middleware/validationMiddleware.js"
 
 router.post("/register", validateRegister, registerUser);
-router.post("/login", validateLogin, loginUser);
+router.post("/login",loginUser);
 export default router
