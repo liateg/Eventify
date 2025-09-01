@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-straight/css/uicons-thin-straight.css'>
+  <link rel="stylesheet" href="/style.css">
+  <title>Login - Evntify</title>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="container">
+
+    <div id="notification"></div>
+      <!-- Welcome Text -->
+      <div class="welcome-text">
+        <h1>Welcome Back to <span class="carter-one-regular">Evntify</span></h1>
+        <p>Sign in to continue discovering, booking, managing, and creating amazing events.</p>
+      </div>
+
+      <!-- Login Form -->
+      <form action="/user/login" method="POST" class="form-card">
+        <!-- Phone Number -->
+        <label for="phone">Phone Number:</label>
+        <input type="tel" 
+               id="phone" 
+               name="phoneNumber" 
+               value="+251" 
+               required 
+               pattern="^\+251[79][0-9]{8}$" 
+               placeholder="+2519--------">
+
+        <!-- Password -->
+        <label for="password">Password:</label>
+        <input type="password" 
+               id="password" 
+               name="password" 
+               required 
+               minlength="6" 
+               placeholder="******">
+
+        <!-- Role Dropdown -->
+        <label for="role">Role:</label>
+        <select id="role" name="role" required>
+          <option value="">Select your role</option>
+          <option value="Atendee">Attendee</option>
+          <option value="Organizer">Organizer</option>
+        </select>
+
+        <!-- Submit Button -->
+        <button type="submit" class="register-btn">Login</button>
+
+        <!-- Register Link -->
+        <p class="switch-text">Don’t have an account? 
+          <a href="/register.ejs" class="switch-link">Register here</a>
+        </p>
+      </form>
+
+    </div>
+  </div>
+ 
+<div id="notification"></div>
+
+<script>
+  const successMessages = <%- JSON.stringify(success) %>; // array from flash
+  const errorMessages = <%- JSON.stringify(error) %>;
+
+  const notification = document.getElementById("notification");
+
+  if (successMessages.length) {
+    notification.textContent = successMessages[0];
+    notification.style.backgroundColor = "#4caf50"; // green
+    notification.classList.add("show");
+  } else if (errorMessages.length) {
+    notification.textContent = errorMessages[0];
+    notification.style.backgroundColor = "#f44336"; // red
+    notification.classList.add("show");
+  }
+
+  setTimeout(() => {
+    notification.classList.remove("show");
+  }, 7000);
+</script>
+
+
+  <!-- <script>
+    const susc= "<%=locals.success%>"
+    if(susc==true){
+      document.getElementById("notification-s").classList.add("show")
+       
+    }
+    setTimeout(()=>{
+        document.getElementById("notification-s").classList.remove("show")},7000
+    )
+    
+    const err= "<%=locals.error%>"
+    
+    if(err){
+      document.getElementById("notification-us").textContent=err
+      document.getElementById("notification-us").classList.add("show")
+       
+    }
+    setTimeout(()=>{
+        document.getElementById("notification-us").classList.remove("show")},7000
+    )
+    err=!err
+    susc=!susc
+  
+  </script> -->
+</body>
+</html>
