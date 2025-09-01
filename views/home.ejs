@@ -1,0 +1,28 @@
+  <%- include('partials/header.ejs') %>
+<!-- Hero Section -->
+  <section class="hero">
+    <h1>Discover & Create Amazing Events</h1>
+    <p>The complete platform for event discovery, ticket booking, and event management</p>
+    <input type="text" class="search-box" placeholder="Search events by name, category, or location...">
+    <div class="buttons">
+      <button class="btn btn-browse">Browse Events</button>
+      <button class="btn btn-create">Create Event</button>
+    
+    </div>
+  </section>
+
+  <script src="/script.js">
+   
+  </script>
+    
+<script>
+  const successMessages = <%- JSON.stringify(success) %>; // array from flash
+  if(successMessages.length){
+  const onboardBs=document.querySelectorAll(".onboard")
+  onboardBs.forEach(element => {
+    element.classList.add("hide")
+  });
+}
+</script>
+  </body>
+  </html>
