@@ -457,7 +457,7 @@ option:hover{
 }
 .side-nav{
   padding-top: 15px;
-  background-color: #000;
+  background-color: #111;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -474,7 +474,16 @@ option:hover{
   border: none;
 
 }
+.side-nav button:hover{
+  color: #000 !important;
+  background-color: #f5a623 !important;
+}
 .active-{
   color: #000 !important;
   background-color: #f5a623 !important;
 }
+
+.dashboard{
+  
+}
+
