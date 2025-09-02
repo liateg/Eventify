@@ -83,7 +83,7 @@
       background: #ffa733;
     }
 /* Sign In Button */
-.sign-in-btn {
+.sign-in-btn, li button {
   background: black;
   padding: 8px 15px;       /* same as register-btn */
   border-radius: 6px;      /* same as register-btn */
@@ -96,6 +96,9 @@
 
 .sign-in-btn:hover {
   background: #333;        /* slightly lighter black on hover */
+}
+li button:hover{
+   background: #333;   
 }
 
     /* Cart with badge */
@@ -239,6 +242,11 @@
       .search-box {
         width: 90%;
       }
+
+     .side-nav{
+        visibility: hidden;
+        display: none;
+     } 
     }
 
     @media (max-width: 480px) {
@@ -440,21 +448,15 @@ option:hover{
   opacity: 1;
   transform: translateY(0);
 }
+
 .onboard{
   opacity: 1;
 }
 .onboard.hide{
   opacity: 0;
 }
+/* 
 
-.org{
-  display: flex;
-  height: 100vh;
-  background-color: rgb(55, 47, 1);
-  
-  
-
-}
 .side-nav{
   padding-top: 15px;
   background-color: #111;
@@ -466,27 +468,30 @@ option:hover{
 }
 .side-nav button{
   margin-top: 10px;
-  width: 100%;
-  text-align: left;
+  
+  text-align: center;
   color: #fff;
   background:transparent;
   padding: 10px;
   border: none;
 
-}
-.side-nav button:hover{
+} */
+/* li button:hover{
   color: #000 !important;
   background-color: #f5a623 !important;
-}
+} */
 .active-{
   color: #000 !important;
   background-color: #f5a623 !important;
 }
 
 .dashboard{
+    margin-top: 5%;
   display: flex;
   flex-direction: column;
-  gap:5rem;
+ 
+  background-color: #000;
+  width:100%;
 }
 .data{
   display: flex;
@@ -495,5 +500,132 @@ option:hover{
 .card{
   display: flex;
   flex-direction: column;
+  background-color: #111;
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  margin: 10px;
+}
+.card {
+  text-align: center;
+}
+.card  h1{
+  color: #f5a623;
 }
 
+.well{
+  padding: 15px;
+  margin-bottom: 2%;
+  text-align: center;
+}
+.well p{
+    margin-top: 2%;
+}
+
+
+
+ /* Events Section */
+        .events-section {
+            padding: 50px 20px;
+        }
+
+        .section-title {
+         
+            margin-bottom: 40px;
+            text-align: center;
+            font-size: 1.5rempx;
+            color: #f5a623;
+        }
+
+        .events-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .event-card {
+            background: #111;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(245, 166, 35, 0.2);
+        }
+
+        .event-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .event-details {
+            padding: 20px;
+        }
+
+        .event-type {
+            color: #f5a623;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .event-price {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .event-name {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .event-info {
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+
+        .event-info p {
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .event-info i {
+            margin-right: 10px;
+            color: #f5a623;
+        }
+
+        .tickets-available {
+            color: #4CAF50;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+         .tickets-sold {
+            color: #f5a623;;
+            margin-bottom: 15px;
+            
+        }
+
+        .view-details-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: #f5a623;
+            color: black;
+            text-align: center;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .view-details-btn:hover {
+            background: #ffa733;
+        }
