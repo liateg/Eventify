@@ -34,6 +34,12 @@
       font-size: 22px;
     }
 
+      .logo {
+      color: #f5a623;
+      font-weight: bold;
+      font-size: 22px;
+    }
+
     .navbar ul {
       list-style: none;
       display: flex;
@@ -439,4 +445,36 @@ option:hover{
 }
 .onboard.hide{
   opacity: 0;
+}
+
+.org{
+  display: flex;
+  height: 100vh;
+  background-color: rgb(55, 47, 1);
+  
+  
+
+}
+.side-nav{
+  padding-top: 15px;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width:20%;
+
+}
+.side-nav button{
+  margin-top: 10px;
+  width: 100%;
+  text-align: left;
+  color: #fff;
+  background:transparent;
+  padding: 10px;
+  border: none;
+
+}
+.active-{
+  color: #000 !important;
+  background-color: #f5a623 !important;
 }
