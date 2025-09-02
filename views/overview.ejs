@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizer | Eventift</title>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="org">
+       <div class="side-nav">
+  <div class="logo carter-one-regular">Eventify</div>
+  <p>Organizer Dashboard</p>
+    <form action="/overview" method="get"   id="overview">
+  <button type="submit" class="active-">
+    <i class="fi fi-tr-user-time" ></i> Overview
+  </button>
+</form>
+
+  <form action="/creteEvent" method="get" id="creteEvent">
+  <button type="submit" >
+    <i class="fi fi-tr-user-time"></i> Create Event
+  </button>
+</form>
+
+  <form action="/myEvents" method="get" id="myEvents">
+  <button type="submit" >
+    <i class="fi fi-tr-user-time"></i> My Event
+  </button>
+</form>
+
+  <form action="/analytics" method="get" id="analytics">
+  <button type="submit" >
+    <i class="fi fi-tr-user-time"></i> Analytics
+  </button>
+</form>
+   </div> 
+   <div class="dashboard">
+<div class="data">
+  <div class="card">
+    <h1 class="revenu">Revenu</h1>
+    <h3 class="num">7000ETB</h3>
+  </div>
+
+    <div class="card">
+    <h1 class="revenu">Tchets Sold</h1>
+    <h3 class="num">700</h3>
+  </div>
+
+    <div class="card">
+    <h1 class="revenu">Active Events</h1>
+    <h3 class="num">7</h3>
+  </div>
+</div>
+   </div>
+</div>
+</body>
+</html>
