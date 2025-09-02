@@ -1,9 +1,9 @@
 import { PrismaClient } from "@prisma/client";
 import { success } from "zod";
-import { da } from "zod/locales";
+import { da, fa, tr } from "zod/locales";
 const prisma = new PrismaClient();
 
-const postEvent=async (req,res)=>{
+export const postEvent=async (req,res)=>{
     try{
         
 
@@ -55,4 +55,101 @@ return res.status(201).json({success:true,data:event})
         return res.status(401).json({success:false,erroe:error.message})
     }
 
+}
+
+export const editPost = async (req, res) => {
+  try {
+    const {
+      id,
+      title,
+      description,
+      date,
+      location,
+      poster,
+      category,
+      status,
+      organizerId,
+      ticketId,     // array of ticket IDs
+      ticketType,
+      ticketPrice,
+      ticketQty,
+    } = req.body;
+console.log(req.params.id)
+    // Update event
+    const event = await prisma.event.update({
+      where: { id: req.params.id || id }, // or req.body.eventId
+      data: {
+        title,
+        description,
+        date: new Date(date),
+        location,
+        poster,
+        category,
+        status,
+      },
+      include: {
+        organizer: true,
+      },
+    });
+
+    // Prepare tickets array with IDs
+    const tickets = ticketId.map((id, i) => ({
+      id,
+      type: ticketType[i] || "General",
+      price: Number(ticketPrice[i]),
+      quantity: Number(ticketQty[i]),
+    }));
+
+    // Update tickets
+    await Promise.all(
+      tickets.map(t =>
+        prisma.ticket.update({
+          where: { id: t.id },
+          data: { type: t.type, price: t.price, quantity: t.quantity },
+        })
+      )
+    );
+
+    return res.status(200).json({ success: true, data: event });
+  } catch (error) {
+    return res.status(500).json({ success: false, error: error.message });
+  }
+};
+
+export const getMyEvents=async (req,res)=>{
+const {id}=req.body
+try{const events=await prisma.event.findMany({
+  where:{organizerId:id},
+  include:{tickets:true}
+})
+if(events.length){
+  return res.status(201).json({success:true,data:events})
+}
+return res.status(201).json({success:true,message:"No event created"})
+}catch(error){
+return res.status(401).json({success:false,error:error.message})
+}
+
+}
+// //delete button
+// export const deleteEvent=>async(req,res)=>{
+// const {id,evetId}=req.body
+// try{
+// const Xevent=await prisma.event.
+// }catch(error){
+
+// }
+
+// }
+export const pauseEvent=async(req,res)=>{
+  const {id,eventId}=req.body
+  try{
+const event=await prisma.event.update({
+  where:{id:eventId},
+  data:{status:"hold"}
+})
+return res.status(201).json({success:true,data:event})
+  }catch(error){
+return res.postEvent(401).json({success:false,error:error.message})
+  }
 }
