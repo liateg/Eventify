@@ -16,12 +16,19 @@ datasource db {
 
 // schema.prisma
 
-
 enum Role {
   Organizer
   Attendee
 }
 
+enum Status{ /
+  available
+  active 
+  expiered
+  hold
+  soldout
+  
+}
 
 model User {
   id           String   @id @default(uuid())
@@ -32,6 +39,36 @@ model User {
   role         Role     @default(Attendee)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+  Event        Event[]
 }
 
+// Event model
+model Event {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  date        DateTime
+  location    String
+  poster      String?
+  category    String
+  status      Status   @default(active)
+  organizer   User     @relation(fields: [organizerId], references: [id])
+  organizerId String
+  tickets     Ticket[]
+  createdAt   DateTime @default(now())
+    updatedAt    DateTime @updatedAt
+}
 
+// Ticket model
+model Ticket {
+  id        String   @id @default(uuid())
+  type      String   @default("General") // default if no type is given
+  price     Float
+  quantity  Int
+  sold      Int      @default(0)
+  status    Status   @default(available)
+  event     Event    @relation(fields: [eventId], references: [id])
+  eventId   String
+  createdAt DateTime @default(now())
+    updatedAt    DateTime @updatedAt
+}
