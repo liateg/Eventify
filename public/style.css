@@ -484,6 +484,16 @@ option:hover{
 }
 
 .dashboard{
-  
+  display: flex;
+  flex-direction: column;
+  gap:5rem;
+}
+.data{
+  display: flex;
+  gap:10px;
+}
+.card{
+  display: flex;
+  flex-direction: column;
 }
 
