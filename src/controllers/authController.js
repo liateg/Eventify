@@ -63,6 +63,7 @@ if(!match) {
   process.env.JWT_SECRET,
   { expiresIn: "1d" }
 )
+console.log(`$tocken${accesToken}`)
 // return res.render("home.ejs")
  req.flash("success", "Login Successful!");
     res.redirect("/"); // redirect to login
@@ -75,9 +76,9 @@ if(!match) {
         // return res.status(400).json({success:false,error:"Invalid user credential"})
    }}   catch(error){
     req.flash("error", "Login Failed. Try again.");
-    res.redirect("/login");
+    // res.redirect("/login");
     //    return res.render("home.ejs",{success:false,message:error.message}) 
-    // return res.status(400).json({ success:false ,error: error.message});
+    return res.status(400).json({ success:false ,error: error.message});
     }}
 
 
