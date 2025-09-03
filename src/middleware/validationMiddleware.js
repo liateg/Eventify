@@ -7,7 +7,7 @@ const registerSchema = z.object({
   phoneNumber: z
     .string()
     .regex(
-      /^(?:\+2519\d{8}|09\d{8}|\+2547\d{8}|07\d{8})$/,
+      /^(?:\+2519\d{8}|09\d{8}|\+2517\d{8}|07\d{8})$/,
       "Invalid Ethiopian or Safaricom phone number"
     ),
   password: z.string().min(6, "Password must be at least 6 characters"),
@@ -18,15 +18,15 @@ const loginSchema=z.object({
    phoneNumber: z
     .string()
     .regex(
-      /^(?:\+2519\d{8}|09\d{8}|\+2547\d{8}|07\d{8})$/,
+      /^(?:\+2519\d{8}|09\d{8}|\+2517\d{8}|07\d{8})$/,
       "Invalid Ethiopian or Safaricom phone number"
     ),
   password: z.string().min(6, "Password must be at least 6 characters"),
   role: z.string()
 })
 
-
-
+const eventCreateScheme=z.object({})
+const eventEditScheme=z.object({})
 
 export const validateLogin=(req,res,next)=>{
   try{
