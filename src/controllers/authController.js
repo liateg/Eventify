@@ -54,6 +54,15 @@ if(!match) {
     //  return res.render("login.ejs",{success:false,error:"Invalid user credential"})
     // return res.status(400).json({success:false,error:"Invalid user credential"})
 }
+     const accesToken=jwt.sign(
+  {
+    id:user.id,
+    phoneNumber: phoneNumber,
+    role: user.role
+  },
+  process.env.JWT_SECRET,
+  { expiresIn: "1d" }
+)
 // return res.render("home.ejs")
  req.flash("success", "Login Successful!");
     res.redirect("/"); // redirect to login
