@@ -30,3 +30,14 @@ return res.status(401).json({success:false,message:error.message})
     }
 }
 
+export const viewdetails=async(req,res)=>{
+    const {eventId}=req.body
+    try{
+        const event =await prisma.event.findUnique({
+            where:{id:eventId}
+        })
+         return res.status(201).json({success:true,data:event})
+    }catch(error){
+return res.status(401).json({success:false,message:error.message})
+    }
+}
