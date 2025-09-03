@@ -356,11 +356,10 @@ li button:hover{
   font-size: 14px;
 }
 
-.form-card input:focus,
-.form-card select:focus {
-  outline: none;
-  border: 1px solid #f5a623;
-  box-shadow: 0 0 5px #f5a623;
+.form-card ,select:focus {
+  outline: none !important;
+  border: 1px solid #f5a623 !important;
+  box-shadow: 0 0 5px #f5a623 !important;
 }
 
 
@@ -485,7 +484,7 @@ option:hover{
   background-color: #f5a623 !important;
 }
 
-.dashboard{
+.dashboard,.create{
     margin-top: 5%;
   display: flex;
   flex-direction: column;
@@ -533,7 +532,7 @@ option:hover{
          
             margin-bottom: 40px;
             text-align: center;
-            font-size: 1.5rempx;
+            font-size: 1.5rem;
             color: #f5a623;
         }
 
@@ -629,3 +628,88 @@ option:hover{
         .view-details-btn:hover {
             background: #ffa733;
         }
+
+
+
+
+
+        /* create event page */
+      .create h2 {
+      margin-bottom: 15px;
+      color: #f5a623;
+    }
+     .create form {
+      max-width: 600px;
+      margin: auto;
+      background: #222;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .create .form-title{
+       margin-bottom: 40px;
+            text-align: center;
+            font-size: 1.5rem;
+            color: #f5a623;
+    }
+     .create label {
+      display: block;
+      color: #f5a623;
+      margin: 10px 0 5px;
+    }
+     .create input,.create textarea,.create  select,.create  button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    .create input:focus, textarea:focus{
+      outline: none !important;
+  border: 1px solid #f5a623 !important;
+  box-shadow: 0 0 5px #f5a623 !important;
+    }
+    .create input, .create textarea, .create select {
+      background: #333;
+      color: #fff;
+    }
+    .create .add-btn {
+      background: #f5a623;
+      color: #000;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+   .create .add-btn:hover {
+      background: #ffb84d;
+    }
+    .create .submit{
+      color: #f5a623;
+      border: 1px solid #f5a623 !important;
+      background-color: #000;
+    }
+    .create .submit:hover{
+      
+      box-shadow: 0 0 5px #f5a623
+    }
+    .ticket-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .ticket-row input {
+      flex: 1;
+    }
+    pre {
+      background: #000;
+      color: #0f0;
+      padding: 15px;
+      border-radius: 6px;
+      margin-top: 20px;
+      overflow-x: auto;
+    }
+    .add-btn {
+      background: #444;
+      color: #fff;
+      font-size: 12px;
+    }
