@@ -66,7 +66,13 @@ if(!match) {
 console.log(`$tocken${accesToken}`)
 // return res.render("home.ejs")
  req.flash("success", "Login Successful!");
-    res.redirect("/"); // redirect to login
+if(user.role=="Attendee"){
+        res.redirect("/"); // redirect to login
+}else if(user.role=="Organizer"){
+        res.redirect("/org"); // redirect to login
+}
+
+
        
     }else {
         throw new Error("Invalid user credential-user does not exists")
@@ -76,9 +82,9 @@ console.log(`$tocken${accesToken}`)
         // return res.status(400).json({success:false,error:"Invalid user credential"})
    }}   catch(error){
     req.flash("error", "Login Failed. Try again.");
-    // res.redirect("/login");
+    res.redirect("/login");
     //    return res.render("home.ejs",{success:false,message:error.message}) 
-    return res.status(400).json({ success:false ,error: error.message});
+    // return res.status(400).json({ success:false ,error: error.message});
     }}
 
 
