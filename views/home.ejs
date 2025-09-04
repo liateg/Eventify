@@ -25,6 +25,7 @@
   const successMessages = <%- JSON.stringify(success) %>; // array from flash
   if(successMessages.length){
   const onboardBs=document.querySelectorAll(".onboard")
+  
   onboardBs.forEach(element => {
     element.classList.add("hide")
   });
