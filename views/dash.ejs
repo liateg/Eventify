@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Event</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      padding: 20px;
+    }
+    h2 {
+      margin-bottom: 15px;
+      color: #f5a623;
+    }
+    form {
+      max-width: 600px;
+      margin: auto;
+      background: #222;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    input, textarea, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    input, textarea, select {
+      background: #333;
+      color: #fff;
+    }
+    button {
+      background: #f5a623;
+      color: #000;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    button:hover {
+      background: #ffb84d;
+    }
+    .ticket-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .ticket-row input {
+      flex: 1;
+    }
+    pre {
+      background: #000;
+      color: #0f0;
+      padding: 15px;
+      border-radius: 6px;
+      margin-top: 20px;
+      overflow-x: auto;
+    }
+    .add-btn {
+      background: #444;
+      color: #fff;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Create Event</h2>
+
+  <form id="eventForm">
+    <label>Title</label>
+    <input type="text" name="title" required>
+
+    <label>Description</label>
+    <textarea name="description" rows="3" required></textarea>
+
+    <label>Date</label>
+    <input type="datetime-local" name="date" required>
+
+    <label>Location</label>
+    <input type="text" name="location" required>
+
+    <label>Poster URL</label>
+    <input type="url" name="poster">
+
+    <label>Category</label>
+    <input type="text" name="category" required>
+
+    <label>Status</label>
+    <select name="status">
+      <option value="active">Active</option>
+      <option value="draft">Draft</option>
+      <option value="cancelled">Cancelled</option>
+    </select>
+
+    <label>Organizer ID</label>
+    <input type="text" name="organizerId" required>
+
+    <!-- Tickets -->
+    <h3>Tickets</h3>
+    <div id="ticketsContainer">
+      <div class="ticket-row">
+        <input type="text" placeholder="Type (VIP, General...)" name="ticketType[]" required>
+        <input type="number" placeholder="Price" name="ticketPrice[]" required>
+        <input type="number" placeholder="Quantity" name="ticketQty[]" required>
+      </div>
+    </div>
+    <button type="button" class="add-btn" onclick="addTicket()">+ Add Ticket</button>
+
+    <button type="submit">Submit Event</button>
+  </form>
+
+  <pre id="output"></pre>
+
+  <script>
+    function addTicket() {
+      const container = document.getElementById("ticketsContainer");
+      const div = document.createElement("div");
+      div.classList.add("ticket-row");
+      div.innerHTML = `
+        <input type="text" placeholder="Type" name="ticketType[]" required>
+        <input type="number" placeholder="Price" name="ticketPrice[]" required>
+        <input type="number" placeholder="Quantity" name="ticketQty[]" required>
+      `;
+      container.appendChild(div);
+    }
+
+    document.getElementById("eventForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const formData = new FormData(this);
+      const data = {
+        title: formData.get("title"),
+        description: formData.get("description"),
+        date: new Date(formData.get("date")).toISOString(),
+        location: formData.get("location"),
+        poster: formData.get("poster"),
+        category: formData.get("category"),
+        status: formData.get("status"),
+        organizerId: formData.get("organizerId"),
+        ticketType: formData.getAll("ticketType[]"),
+        ticketPrice: formData.getAll("ticketPrice[]").map(Number),
+        ticketQty: formData.getAll("ticketQty[]").map(Number),
+      };
+
+      document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+    });
+  </script>
+</body>
+</html>

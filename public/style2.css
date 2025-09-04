@@ -1,0 +1,631 @@
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+.carter-one-regular {
+  font-family: "Carter One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+    body {
+      background: #000;
+      color: white;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      background: #000;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar .logo {
+      color: #f5a623;
+      font-weight: bold;
+      font-size: 22px;
+    }
+
+      .logo {
+      color: #f5a623;
+      font-weight: bold;
+      font-size: 22px;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    .navbar ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    .navbar ul li a:hover {
+      color: #f5a623;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .nav-right a {
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+    }
+
+    .register-btn {
+      background: #f5a623;
+      padding: 8px 15px;
+      border-radius: 6px;
+      color: black !important;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .register-btn:hover {
+      background: #ffa733;
+    }
+/* Sign In Button */
+.sign-in-btn, li button {
+  background: black;
+  padding: 8px 15px;       /* same as register-btn */
+  border-radius: 6px;      /* same as register-btn */
+  color: white !important;  /* text color */
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.sign-in-btn:hover {
+  background: #333;        /* slightly lighter black on hover */
+}
+li button:hover{
+   background: #333;   
+}
+
+    /* Cart with badge */
+    .cart {
+      position: relative;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background: #f5a623;
+      color: black;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 2px 6px;
+      border-radius: 50%;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                  url('pexels-photo-1105666.jpeg') no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      margin-top: 60px;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 30px;
+      color: #f5a623;
+    }
+
+    .search-box {
+      width: 60%;
+      max-width: 600px;
+      padding: 12px;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
+      margin-bottom: 25px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: bold;
+    }
+
+    .btn-browse {
+      background: #f5a623;
+      color: black;
+    }
+
+    .btn-browse:hover {
+      background: #ffa733;
+      transform: scale(1.05);
+    }
+
+    .btn-create {
+      background: transparent;
+      border: 2px solid #f5a623;
+      color: #f5a623;
+    }
+
+    .btn-create:hover {
+      background: #f5a623;
+      color: black;
+      transform: scale(1.05);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .navbar ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background: #111;
+        padding: 15px;
+        border-radius: 8px;
+      }
+
+      .navbar ul.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-right {
+        gap: 10px;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .search-box {
+        width: 90%;
+      }
+
+     .side-nav{
+        visibility: hidden;
+        display: none;
+     } 
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 26px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .btn {
+        padding: 10px 18px;
+        font-size: 14px;
+      }
+    }
+
+    .wrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #090909;
+        
+    }
+    .container{
+        display: flex;
+        flex-direction: column;
+        min-height: 500px;
+        width:400px;
+       
+        border-radius: 12px;
+    }
+    .role{
+        display: flex;
+        
+
+    }
+ .role div {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 12px;             /* smooth rounded corners */
+  padding: 20px;                   /* inner spacing */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* subtle shadow */
+  transition: all 0.3s ease;
+  max-width: 300px;
+                     /* text readable on dark bg */
+}
+.role p{
+    font-size: 0.5rem;
+    padding-top: 5px;
+}
+/* Attendee card */
+.atendee {
+  border: 2px solid #f5a623;       /* orange border */
+  background: transparent;   
+  color: white;       /* no background initially */
+}
+
+.atendee:hover {
+  background: #111;                /* black background on hover */
+  box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+}
+
+/* Organizer card */
+.organizer {
+    color: #000;
+  background-color: #ffa733;        /* black background */
+  border:transparent;   /* no border by default */
+}
+
+.organizer:hover {
+  border: 2px solid #f5a623; 
+  background-color: #000;
+  color: #fff;        /* orange border on hover */
+  box-shadow: 0 6px 12px rgba(226, 170, 3, 0.5);
+}
+
+
+.form-card {
+  background: #111;
+  border: 2px solid #f5a623;
+  padding: 20px;
+  border-radius: 12px;
+  min-width: 400px;
+  margin: 20px auto;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 6px 12px rgba(226, 170, 3, 0.5);
+}
+
+.form-card label {
+  font-weight: bold;
+}
+
+.form-card input,
+.form-card select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.form-card input:focus,
+.form-card select:focus {
+  outline: none;
+  border: 1px solid #f5a623;
+  box-shadow: 0 0 5px #f5a623;
+}
+
+
+select option {
+  background-color: #111; /* background of unselected options */
+  color: #fff;            /* text color */
+}
+
+select:focus option:checked {
+  background-color: #f5a623; /* selected option color */
+  color: black;
+}
+option:hover{
+   background-color: #f5a623; /* selected option color */
+  color: black; 
+}
+
+.form-card button {
+  margin-top: 10px;
+  background: #f5a623;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.form-card button:hover {
+  background: #ffa733;
+}
+
+/* Welcome text */
+.welcome-text {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.welcome-text h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #f5a623;
+}
+
+.welcome-text p {
+  font-size: 1rem;
+  color: #ddd;
+}
+
+/* Switch text below form */
+.switch-text {
+  text-align: center;
+  margin-top: 10px;
+  color: #ddd;
+}
+
+.switch-link {
+  color: #f5a623;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.switch-link:hover {
+  color: #ffa733;
+}
+    #notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.5s, transform 0.5s;
+  z-index: 1000;
+}
+
+#notification.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.onboard{
+  opacity: 1;
+}
+.onboard.hide{
+  opacity: 0;
+}
+/* 
+
+.side-nav{
+  padding-top: 15px;
+  background-color: #111;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width:20%;
+
+}
+.side-nav button{
+  margin-top: 10px;
+  
+  text-align: center;
+  color: #fff;
+  background:transparent;
+  padding: 10px;
+  border: none;
+
+} */
+/* li button:hover{
+  color: #000 !important;
+  background-color: #f5a623 !important;
+} */
+.active-{
+  color: #000 !important;
+  background-color: #f5a623 !important;
+}
+
+.dashboard{
+    margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+ 
+  background-color: #000;
+  width:100%;
+}
+.data{
+  display: flex;
+  gap:10px;
+}
+.card{
+  display: flex;
+  flex-direction: column;
+  background-color: #111;
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  margin: 10px;
+}
+.card {
+  text-align: center;
+}
+.card  h1{
+  color: #f5a623;
+}
+
+.well{
+  padding: 15px;
+  margin-bottom: 2%;
+  text-align: center;
+}
+.well p{
+    margin-top: 2%;
+}
+
+
+
+ /* Events Section */
+        .events-section {
+            padding: 50px 20px;
+        }
+
+        .section-title {
+         
+            margin-bottom: 40px;
+            text-align: center;
+            font-size: 1.5rempx;
+            color: #f5a623;
+        }
+
+        .events-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .event-card {
+            background: #111;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(245, 166, 35, 0.2);
+        }
+
+        .event-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .event-details {
+            padding: 20px;
+        }
+
+        .event-type {
+            color: #f5a623;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .event-price {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .event-name {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .event-info {
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+
+        .event-info p {
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .event-info i {
+            margin-right: 10px;
+            color: #f5a623;
+        }
+
+        .tickets-available {
+            color: #4CAF50;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+         .tickets-sold {
+            color: #f5a623;;
+            margin-bottom: 15px;
+            
+        }
+
+        .view-details-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: #f5a623;
+            color: black;
+            text-align: center;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .view-details-btn:hover {
+            background: #ffa733;
+        }
