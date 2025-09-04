@@ -6,5 +6,8 @@ const router=express.Router()
 router.post("/post",authenticateToken,postEvent)
 router.post("/edit/:id",authenticateToken,editPost)
 router.post("/hold",authenticateToken,pauseEvent)
-router.get("/",authenticateToken,getMyEvents)
+router.get("/events",authenticateToken,getMyEvents)
+router.get("/",(req,res)=>{
+    res.render("overview.ejs")
+})
 export default router
