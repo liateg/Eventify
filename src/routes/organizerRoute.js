@@ -7,7 +7,10 @@ router.post("/post",authenticateToken,postEvent)
 router.post("/edit/:id",authenticateToken,editPost)
 router.post("/hold",authenticateToken,pauseEvent)
 router.get("/events",authenticateToken,getMyEvents)
-router.get("/",(req,res)=>{
+router.get("/",authenticateToken,(req,res)=>{
     res.render("overview.ejs")
+})
+router.get("/create",authenticateToken,(req,res)=>{
+    res.render("creatEvent.ejs")
 })
 export default router
