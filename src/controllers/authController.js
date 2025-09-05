@@ -3,6 +3,7 @@ import {checkPasswor, hash_Password} from "../utils/passwordUtils.js"
 // import { tr } from "zod/locales";
 // import { success } from "zod";
 import jwt from "jsonwebtoken"
+import cookieParser from "cookie-parser"
 
 const prisma = new PrismaClient();
 
@@ -44,7 +45,7 @@ export const loginUser=async (req,res)=>{
     const user=await userExists(phoneNumber)
     
     if(user){
-        
+       
 const match=await checkPasswor(password,user.passwordHash)
 
 
@@ -53,13 +54,16 @@ if(!match) {
        
     //  return res.render("login.ejs",{success:false,error:"Invalid user credential"})
     // return res.status(400).json({success:false,error:"Invalid user credential"})
-}
+}console.log(user) 
        const accessToken = generateAccessToken(user);
   const refreshToken = generateRefreshToken(user);
 
-  res.cookie("accessToken", accessToken, { httpOnly: process.env.NODE_ENV==="production", sameSite:process.env.NODE_ENV==="production"? "strict":"lex" });
+console.log(`$tocken${accessToken}`)
+  try{res.cookie("accessToken", accessToken, { httpOnly: true, secure:process.env.NODE_ENV==="production",sameSite:process.env.NODE_ENV==="production"? "strict":"lex" });
   res.cookie("refreshToken", refreshToken, { httpOnly: true, secure: process.env.NODE_ENV==="production", sameSite:process.env.NODE_ENV==="production"? "strict":"lex" });
-
+}catch(error){
+    console.log(error.message)
+}
 console.log(`$tocken${accessToken}`)
 // return res.render("home.ejs")
  req.flash("success", "Login Successful!");
@@ -106,7 +110,7 @@ const generateAccessToken=(user)=>{
        return jwt.sign(
   {
     id:user.id,
-    phoneNumber: phoneNumber,
+    phoneNumber: user.phoneNumber,
     role: user.role
   },
   process.env.JWT_SECRET,
@@ -114,6 +118,7 @@ const generateAccessToken=(user)=>{
 )
 
 }catch(error){
+    console.log(error.message)
 return new Error ("Couldn't get accestocken")
 }
 
@@ -125,7 +130,7 @@ const generateRefreshToken=(user)=>{
         const token=jwt.sign(
   {
     id:user.id,
-    phoneNumber: phoneNumber,
+    phoneNumber: user.phoneNumber,
     role: user.role
   },
   process.env.JWT_REFRESH_SECRETE,
