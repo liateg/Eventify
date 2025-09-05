@@ -54,16 +54,13 @@ if(!match) {
     //  return res.render("login.ejs",{success:false,error:"Invalid user credential"})
     // return res.status(400).json({success:false,error:"Invalid user credential"})
 }
-     const accesToken=jwt.sign(
-  {
-    id:user.id,
-    phoneNumber: phoneNumber,
-    role: user.role
-  },
-  process.env.JWT_SECRET,
-  { expiresIn: "1d" }
-)
-console.log(`$tocken${accesToken}`)
+       const accessToken = generateAccessToken(user);
+  const refreshToken = generateRefreshToken(user);
+
+  res.cookie("accessToken", accessToken, { httpOnly: process.env.NODE_ENV==="production", sameSite:process.env.NODE_ENV==="production"? "strict":"lex" });
+  res.cookie("refreshToken", refreshToken, { httpOnly: true, secure: process.env.NODE_ENV==="production", sameSite:process.env.NODE_ENV==="production"? "strict":"lex" });
+
+console.log(`$tocken${accessToken}`)
 // return res.render("home.ejs")
  req.flash("success", "Login Successful!");
 if(user.role=="Attendee"){
@@ -103,8 +100,10 @@ const userExists=async (phoneNumber)=>{
         return false}
 }
 
-const tokenGen=()=>{
-     const accesToken=jwt.sign(
+const generateAccessToken=(user)=>{
+    
+    try{
+       return jwt.sign(
   {
     id:user.id,
     phoneNumber: phoneNumber,
@@ -114,6 +113,27 @@ const tokenGen=()=>{
   { expiresIn: "1d" }
 )
 
-// return res.status(201).json({success:true,accesToken:accesToken})
-return res.render("home.ejs",{success:true,message:"Logged in successfully"})
+}catch(error){
+return new Error ("Couldn't get accestocken")
+}
+
+}
+
+const generateRefreshToken=(user)=>{
+    
+    try{
+        const token=jwt.sign(
+  {
+    id:user.id,
+    phoneNumber: phoneNumber,
+    role: user.role
+  },
+  process.env.JWT_REFRESH_SECRETE,
+  { expiresIn: "7d" }
+)
+return token
+}catch(error){
+return new Error ("Couldn't get Refreshtocken")
+}
+
 }
