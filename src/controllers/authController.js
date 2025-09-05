@@ -59,8 +59,9 @@ if(!match) {
   const refreshToken = generateRefreshToken(user);
 
 console.log(`$tocken${accessToken}`)
-  try{res.cookie("accessToken", accessToken, { httpOnly: true, secure:process.env.NODE_ENV==="production",sameSite:process.env.NODE_ENV==="production"? "strict":"lex" });
-  res.cookie("refreshToken", refreshToken, { httpOnly: true, secure: process.env.NODE_ENV==="production", sameSite:process.env.NODE_ENV==="production"? "strict":"lex" });
+  try{res.cookie("accessToken", accessToken, { httpOnly: true, secure:process.env.NODE_ENV==="production"});
+  res.cookie("refreshToken", refreshToken, { httpOnly: true, secure: process.env.NODE_ENV==="production" });
+  console.log(`              ${req.cookies.accessToken}`)
 }catch(error){
     console.log(error.message)
 }
