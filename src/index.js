@@ -4,12 +4,12 @@ import  flash from "connect-flash";
 import userRt from "./routes/authRoute.js"
 import { flashMiddleware } from "./middleware/flashMid.js";
 import orgRoute from "./routes/organizerRoute.js"
-
+import cookieParser from "cookie-parser"
 
 
 const app=express()
 const PORT = process.env.PORT || 3000;
-
+app.use(cookieParser());
 app.use(session({
   secret:process.env.SESSION_SECRET,
   resave: false,
