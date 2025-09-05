@@ -22,6 +22,7 @@ app.use(flashMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
 app.use(express.static("public"))
+
 app.use("/user",userRt)
 app.use("/org",orgRoute)
 app.get("/",(req,res)=>{
