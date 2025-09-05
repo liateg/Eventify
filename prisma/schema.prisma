@@ -21,27 +21,25 @@ enum Role {
   Attendee
 }
 
-enum Status{ /
+enum Status {
   available
-  active 
+  active
   expiered
   hold
   soldout
-  
 }
 
-
-
 model User {
-  id           String   @id @default(uuid())
-  email        String?  @unique
-  phoneNumber  String   @unique
-  passwordHash String
-  name         String
-  role         Role     @default(Attendee)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-  Event        Event[]
+  id            String          @id @default(uuid())
+  email         String?         @unique
+  phoneNumber   String          @unique
+  passwordHash  String
+  name          String
+  role          Role            @default(Attendee)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  Event         Event[]
+  RefreshTocken RefreshTocken[]
 }
 
 // Event model
@@ -58,7 +56,7 @@ model Event {
   organizerId String
   tickets     Ticket[]
   createdAt   DateTime @default(now())
-    updatedAt    DateTime @updatedAt
+  updatedAt   DateTime @updatedAt
 }
 
 // Ticket model
@@ -72,5 +70,13 @@ model Ticket {
   event     Event    @relation(fields: [eventId], references: [id])
   eventId   String
   createdAt DateTime @default(now())
-    updatedAt    DateTime @updatedAt
+  updatedAt DateTime @updatedAt
+}
+
+model RefreshTocken {
+  id String @id @default(uuid()) 
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+  token String
+  expiry DateTime
 }
