@@ -1,31 +1,52 @@
 import { PrismaClient } from "@prisma/client";
-import { success } from "zod";
-import { da, fa, tr } from "zod/locales";
+
+
 const prisma = new PrismaClient();
+// const upload = multer({ dest: 'uploads/' })
+
 
 export const postEvent=async (req,res)=>{
     try{
-        
+       const poster = req.file.filename;  
+     console.log("req.body:", req.body);
 
-const {
+let {
   title,
   description,
   date,
   location,
-  poster,
   category,
-  status,
+  
   organizerId,
   ticketType,
   ticketPrice,
   ticketQty,
 } = req.body;
-console.log(`input ${req.body}`)
+console.log("Types:");
+console.log({
+  title: typeof title,
+  description: typeof description,
+  location: typeof location,
+  category: typeof category,
+  
+  organizerId: typeof organizerId,
+  ticketType: typeof ticketType,
+  ticketPrice: typeof ticketPrice,
+  ticketQty: typeof ticketQty
+});
+
+
+console.log("req.body:", req.body);
+ticketType = Array.isArray(ticketType) ? ticketType : [ticketType];
+console.log(Array.isArray(ticketType))
+ticketPrice = Array.isArray(ticketPrice) ? ticketPrice : [ticketPrice];
+ticketQty = Array.isArray(ticketQty) ? ticketQty : [ticketQty];
 const tickets = ticketType.map((type, i) => ({
   type: type || "General",
   price: Number(ticketPrice[i]),
   quantity: Number(ticketQty[i]),
 }));
+
 console.log(`tickets ${tickets}`)
 const event = await prisma.event.create({
   data: {
@@ -35,7 +56,7 @@ const event = await prisma.event.create({
     location,
     poster,
     category,
-    status,
+   
     organizer: {
       connect: { id: organizerId }, // must match User.id
     },
@@ -49,10 +70,10 @@ const event = await prisma.event.create({
   },
 });
 console.log(event)
-return res.status(201).json({success:true,data:event})
-
+// return res.status(201).json({success:true,data:event})
+return res.redirect("/org/myevents")
     }catch(error){
-        return res.status(401).json({success:false,erroe:error.message})
+        return res.status(401).json({success:false,error:error.message})
     }
 
 }
@@ -117,13 +138,15 @@ console.log(req.params.id)
 };
 
 export const getMyEvents=async (req,res)=>{
-const {id}=req.body
+const {id}=req.user
+console.log(id)
 try{const events=await prisma.event.findMany({
   where:{organizerId:id},
   include:{tickets:true}
 })
 if(events.length){
-  return res.status(201).json({success:true,data:events})
+  // return res.status(201).json({success:true,data:events})
+return res.render("myevents.ejs",{data:events});
 }
 return res.status(201).json({success:true,message:"No event created"})
 }catch(error){
