@@ -164,15 +164,38 @@ return res.status(401).json({success:false,error:error.message})
 // }
 
 // }
+export const activeEvents=async (req,res) => {
+ const {id}=req.user
+console.log(id)
+try{const events=await prisma.event.findMany({
+  where:{organizerId:id,
+    status:"active"
+  },
+  include:{tickets:true}
+})
+console.log(events)
+if(events.length){
+  // return res.status(201).json({success:true,data:events})
+return res.render("overview.ejs",{data:events});
+}
+return res.status(201).json({success:true,message:"No event created"})
+}catch(error){
+return res.status(401).json({success:false,error:error.message})
+}
+
+
+}
 export const pauseEvent=async(req,res)=>{
-  const {id,eventId}=req.body
+
+  const {id}=req.params
   try{
 const event=await prisma.event.update({
-  where:{id:eventId},
+  where:{id:id},
   data:{status:"hold"}
 })
-return res.status(201).json({success:true,data:event})
+return res.redirect("/org/myevents")
+// return res.status(201).json({success:true,data:event})
   }catch(error){
-return res.postEvent(401).json({success:false,error:error.message})
+return res.status(401).json({success:false,error:error.message})
   }
 }
