@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Summer Music Festival 2025</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
+<link rel="stylesheet" href="/style.css">
+
+</head>
+<body class="detail-body">
+    <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo carter-one-regular">Eventify</div>
+    <ul id="menu">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Events</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+    <div class="nav-right">
+  <form action="/login" method="get" style="display:inline; margin-right: 10px;" id="login">
+  <button type="submit" class="sign-in-btn onboard">
+    <i class="fi fi-tr-user-time"></i> Sign In
+  </button>
+</form>
+
+<form action="/register" method="get" style="display:inline;" id="register">
+  <button type="submit" class="register-btn onboard">Register</button>
+</form>
+
+  <!-- Cart -->
+  <div class="cart">
+    <i class="fi fi-tr-shopping-cart"></i>
+    <span class="cart-badge">0</span>
+  </div>
+
+  <!-- Hamburger -->
+  <div class="hamburger" id="hamburger">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+
+  </div>
+  <div class="festival-container">
+    <div class="festival-left">
+      <img src="/upload/<%=event.poster%>" alt="Event poster" class="festival-banner">
+      <h1><%=event.title%></h1>
+      <span class="festival-tag"><%=event.category%></span>
+      <div class="festival-info">
+        <div><strong>Date:</strong> <%=event.date%></div>
+        <div><strong>Location:</strong> <%=event.location%></div>
+      </div>
+      <p><strong>250 tickets available</strong></p>
+      <h3>About This Event</h3>
+      <p>
+       <%=event.description%></p>
+    </div>
+    <div class="festival-right">
+      <div class="ticket-box">
+        <h2>Select Your Tickets</h2>
+        <div class="ticket-choice active">
+          <div>General Admission</div>
+          <small>Standard entry with access to all general areas</small>
+          <div class="ticket-price">$89.99</div>
+        </div>
+        <div class="ticket-choice">
+          <div>VIP Experience</div>
+          <small>Premium experience with exclusive perks</small>
+          <div class="ticket-price">$224.97 <small style="text-decoration: line-through; color:gray;">$269.97</small></div>
+        </div>
+        <div class="ticket-quantity">
+          <button>-</button>
+          <span>1</span>
+          <button>+</button>
+        </div>
+        <div class="ticket-price">Total: $89.99</div>
+        <button class="festival-btn">Add to Cart</button>
+      </div>
+
+      <hr class="divider-line">
+
+      <div class="love-events-box">
+        <div style="text-align:center; margin-bottom: 15px;">
+          <h3>Love Events?</h3>
+          <p>
+            Join thousands of event creators and attendees on our premium platform.
+            Create unforgettable experiences or discover your next favorite event.
+          </p>
+        </div>
+        <button class="festival-btn">Create Your Event</button>
+        <button class="festival-btn-outline" style="margin-top: 10px;">Explore More Events</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
