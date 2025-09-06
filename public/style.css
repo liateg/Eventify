@@ -536,7 +536,7 @@ option:hover{
             color: #f5a623;
         }
 
-        .events-container {
+        .events-container,#events-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
