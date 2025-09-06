@@ -360,7 +360,18 @@ li button:hover{
   gap: 12px;
   box-shadow: 0 6px 12px rgba(226, 170, 3, 0.5);
 }
-
+.form-card-{
+  background: #111;
+ 
+  padding: 20px;
+  border-radius: 12px;
+  min-width: 400px;
+  margin: 20px auto;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+ }
 .form-card label {
   font-weight: bold;
 }
@@ -639,11 +650,23 @@ option:hover{
   transition: all 0.3s ease;   /* smooth hover effect */
 }
 
-.view-btn:hover {
+.view-btn:hover,.hold-btn:hover {
   background-color: #f39c12;   /* orange fill */
   color: #111;                 /* text becomes black */
 }
-
+        .hold-btn {
+  background-color: #111;       /* dark background */
+  color: #f39c12;              /* orange text */
+  font-weight: bold;           /* bold text */
+  border: 2px solid #f39c12;   /* orange border */
+  border-radius: 6px;          /* rounded corners */
+  padding: 12px 24px;          /* space inside */
+  cursor: pointer;             /* pointer on hover */
+  font-size: 16px;
+  width: 50%;                 /* full width like your screenshot */
+  text-align: center;
+  transition: all 0.3s ease;   /* smooth hover effect */
+}
 
 
 
