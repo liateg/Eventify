@@ -18,7 +18,7 @@
     <div class="nav-right">
       <ul id="menu">
         <li>
-             <form action="/" method="get"   id="overview">
+             <form action="/org" method="get"   id="overview">
   <button type="submit">
     <i class="fi fi-tr-user-time" ></i> Overview
   </button>
@@ -26,7 +26,7 @@
         </li>
 
 <li>
-    <form action="/creteEvent" method="get" id="creteEvent">
+    <form action="/org/creteEvent" method="get" id="creteEvent">
   <button type="submit"  class="active-" >
     <i class="fi fi-tr-user-time"></i> Create Event
   </button>
@@ -34,14 +34,14 @@
 </li>
 
 <li>
-    <form action="/myEvents" method="get" id="myEvents">
+    <form action="/org/myevents" method="get" id="myEvents">
   <button type="submit" >
     <i class="fi fi-tr-user-time"></i> My Event
   </button>
 </form>
 </li>
 
-<li>  <form action="/analytics" method="get" id="analytics">
+<li>  <form action="/org/analytics" method="get" id="analytics">
   <button type="submit" >
     <i class="fi fi-tr-user-time"></i> Analytics
   </button>
@@ -64,7 +64,7 @@
 
    <div class="create">
 <div class="form-title "><strong>Create a new Event</strong></div>
-<form action="/org/add" method="post" enctype="multipart/form-data" id="eventForm">
+<form action="/org/post" method="post" enctype="multipart/form-data" id="eventForm">
 
     <label class="eventLabel">Event Title</label>
     <input type="text" name="title" required>
@@ -80,12 +80,16 @@
       <label class="eventLabel">Upload a poster</label>
     <input type="file" name="poster">
 
+<input type="hidden" name="organizerId" value="<%=userId%>">
+
+
     <label class="eventLabel">Category</label>
     <select name="category" >
         <option value="Entertament">Entertament</option>
         <option value="other">other</option>
     </select>
-    <div class="ticketsContainer">
+
+    <div id="ticketsContainer">
         <div class="ticket-row">
              <input type="text" placeholder="Type (VIP, General...)" name="ticketType[]" required>
         <input type="number" placeholder="Price" name="ticketPrice[]" required>
@@ -110,8 +114,8 @@
     });
 
 
-document.getElementById("add-btn").addEventListener(click,()=>{
-        const container=document.getElementByClassName("ticketcontainer")
+document.getElementById("add-btn").addEventListener("click",()=>{
+        const container=document.getElementById("ticketsContainer")
     const div=document.createElement("div")
 
     div.classList.add("ticket-row")
