@@ -2,7 +2,7 @@ import express from "express"
 import multer from "multer"
 import path from "path"
 import { fileURLToPath } from "url";
-import {postEvent ,editPost,getMyEvents,pauseEvent} from "../controllers/organizerConttroller.js"
+import {postEvent ,editPost,getMyEvents,pauseEvent,activeEvents} from "../controllers/organizerConttroller.js"
 import {authenticateToken} from "../middleware/authorizationMiddleware.js"
 
 // get __filename and __dirname in ES modules
@@ -33,11 +33,9 @@ const upload = multer({ storage });
 
 router.post("/post",authenticateToken,upload.single("poster"),postEvent)
 router.post("/edit/:id",authenticateToken,editPost)
-router.post("/hold",authenticateToken,pauseEvent)
+router.post("/hold/:id",authenticateToken,pauseEvent)
 router.get("/myevents",authenticateToken,getMyEvents)
-router.get("/",authenticateToken,(req,res)=>{
-    res.render("overview.ejs")
-})
+router.get("/",authenticateToken,activeEvents)
 router.get("/create",authenticateToken,(req,res)=>{
     res.render("createEvent.ejs",{userId:req.user.id})
 })
