@@ -12,7 +12,7 @@ export const authenticateToken = (req, res, next) => {
 
   try {
     const user = jwt.verify(token, process.env.JWT_SECRET); // decode token
-    if(user.role=="organizer") {
+    if(user.role=="Organizer") {
       req.user = user; // attach decoded payload to request
 next(); // move to the next middleware/controller
     }else return res.status(403).json({ success: false, error: "Unauthoeized user" });
