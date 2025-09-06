@@ -4,6 +4,7 @@ import  flash from "connect-flash";
 import userRt from "./routes/authRoute.js"
 import { flashMiddleware } from "./middleware/flashMid.js";
 import orgRoute from "./routes/organizerRoute.js"
+import attendeeRoute from "./routes/attendeeRoute.js"
 import cookieParser from "cookie-parser"
 
 
@@ -25,9 +26,7 @@ app.use(express.static("public"))
 
 app.use("/user",userRt)
 app.use("/org",orgRoute)
-app.get("/",(req,res)=>{
-    res.render("home.ejs")
-})
+app.use("/",attendeeRoute)
 app.get("/register",(req,res)=>{
     res.render("register.ejs")
 })
