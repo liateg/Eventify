@@ -574,11 +574,7 @@ option:hover{
             margin-bottom: 5px;
         }
 
-        .event-price {
-            font-size: 24px;
-            font-weight: bold;
-            margin: 10px 0;
-        }
+      
 
         .event-name {
             font-size: 20px;
@@ -607,27 +603,29 @@ option:hover{
             font-weight: bold;
         }
          .tickets-sold {
-            color: #f5a623;;
+            color: #f5a623;
             margin-bottom: 15px;
             
         }
 
-        .view-details-btn {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            background: #f5a623;
-            color: black;
-            text-align: center;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
+        .view-btn {
+  background-color: #111;       /* dark background */
+  color: #f39c12;              /* orange text */
+  font-weight: bold;           /* bold text */
+  border: 2px solid #f39c12;   /* orange border */
+  border-radius: 6px;          /* rounded corners */
+  padding: 12px 24px;          /* space inside */
+  cursor: pointer;             /* pointer on hover */
+  font-size: 16px;
+  width: 100%;                 /* full width like your screenshot */
+  text-align: center;
+  transition: all 0.3s ease;   /* smooth hover effect */
+}
 
-        .view-details-btn:hover {
-            background: #ffa733;
-        }
+.view-btn:hover {
+  background-color: #f39c12;   /* orange fill */
+  color: #111;                 /* text becomes black */
+}
 
 
 
