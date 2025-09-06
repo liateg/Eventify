@@ -192,6 +192,11 @@ events.forEach(event => {
       <div class="tickets-sold">250/1000</div>
       <div class="event-type">${event.status}</div>
     </div>
+     <form action="/org/hold/${event.id}" method="post">
+                     
+                      <button class="hold-btn" type="submit">Hold</button>
+                     </form>
+    
   `;
   eventContainer.appendChild(div);
 });
