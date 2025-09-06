@@ -5,12 +5,49 @@
     <p>The complete platform for event discovery, ticket booking, and event management</p>
     <input type="text" class="search-box" placeholder="Search events by name, category, or location...">
     <div class="buttons">
-      <button class="btn btn-browse">Browse Events</button>
+      <button class="btn btn-browse" onclick="document.querySelector('.events-section').scrollIntoView({behavior: 'smooth'});">Browse Events</button>
       <button class="btn btn-create">Create Event</button>
     
     </div>
   </section>
 
+ <!-- Events Section -->
+    <section class="events-section">
+       
+        <div id="events-container">
+            <!-- Event 1 -->
+            <div class="event-card">
+                <div class="event-image" style="background-image: url('https://images.pexels.com/photos/976866/pexels-photo-976866.jpeg');"></div>
+                <div class="event-details">
+                    <div class="event-type">Music</div>
+                    <div class="event-price">$89.99</div>
+                    <h3 class="event-name">Summer Music Festival 2025</h3>
+                    <div class="event-info">
+                        <p><i>📅</i> Jul 15, 2025 at 6:00 PM</p>
+                        <p><i>📍</i> Central Park, New York, NY</p>
+                    </div>
+                    
+                     <div class="event-type">Active</div>
+                     <form action="/event/499e576a-0834-4edd-8c95-267df072ba27" method="get">
+                     
+                      <button class="view-btn" type="submit">View Details</button>
+                     </form>
+
+          
+                    
+          
+
+                </div>
+            </div>
+
+          
+
+      
+         
+             
+             
+        </div>
+    </section>
   <script>
    // Toggle menu for mobile
     const hamburger = document.getElementById("hamburger");
@@ -30,6 +67,32 @@
     element.classList.add("hide")
   });
 }
+
+const eventContainer = document.getElementById("events-container");
+const events = <%- JSON.stringify(data) %>; // Pass events safely as JSON
+
+events.forEach(event => {
+  const div = document.createElement("div");
+  div.classList.add("event-card");
+  div.innerHTML = `
+    <div class="event-image" style="background-image: url('/upload/${event.poster}');"></div>
+    <div class="event-details">
+      <div class="event-type">${event.category}</div>
+      <h3 class="event-name">${event.title}</h3>
+      <div class="event-info">
+        <p><i>📅</i> ${event.date}</p>
+        <p><i>📍</i> ${event.location}</p>
+      </div>
+      
+      <div class="event-type">${event.status}</div>
+                 <form action="/event/${event.id }" method="get">
+  <button class="view-btn" type="submit">View Details</button>
+</form>
+    </div>
+  `;
+  eventContainer.appendChild(div);
+});
+
 </script>
   </body>
   </html>
