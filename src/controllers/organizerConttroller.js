@@ -194,7 +194,7 @@ const event=await prisma.event.update({
   data:{status:"hold"}
 })
 return res.redirect("/org/myevents")
-// return res.status(201).json({success:true,data:event})
+return res.status(201).json({success:true,data:event})
   }catch(error){
 return res.status(401).json({success:false,error:error.message})
   }
