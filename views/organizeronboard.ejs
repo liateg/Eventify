@@ -1,96 +1,93 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
 
-   <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
-   <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-straight/css/uicons-thin-straight.css'>
-   <link rel="stylesheet" href="/style.css">
-   <title>Organizer Onboarding</title>
-</head>
-<body>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-straight/css/uicons-thin-straight.css'>
+    <link rel="stylesheet" href="/style.css">
+    <title>Eegister</title>
+ </head>
+ <body>
+    <div class="welcome-text">
+  <h1>Welcome to <span class="carter-one-regular">Evntify</span></h1>
+  <p>Your all-in-one platform for discovering, booking, managing, and creating events.</p>
+</div>
 
-   <!-- Hero Section -->
-   <div class="hero">
-       <h1>Organizer Onboarding</h1>
-       <p>Welcome! Please provide your business information below for verification. 
-          Once verified, you can start creating and selling tickets for your events.
-       </p>
-   </div>
-
-   <!-- Onboarding Form -->
    <div class="wrapper">
        <div id="notification"></div>
-       <div class="container">
+    <div class="container">
+        <div class="role">
+           
+             <div class="organizer" id="organizer">
+                <i class="fi fi-ts-target-audience m"></i>
+                <h1>Organizer</h1>
+                <p>Create and Manage Events</p>
+            </div>
+        </div>
+        <form action="/user/register" method="POST" class="form-card">
+  <!-- Name -->
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" placeholder="Sarah" required>
 
-           <form action="/organizer/onboard" method="POST" class="form-card">
-               <!-- Business Name -->
-               <label for="businessName">Business / Organization Name:</label>
-               <input type="text" id="businessName" name="businessName" placeholder="Your Business Name" required>
+  <!-- Phone Number -->
+  <label for="phone">Phone Number:</label>
+  <input type="tel" 
+         id="phone" 
+         name="phoneNumber" 
+         value="+251" 
+         required 
+         pattern="^\+251[79][0-9]{8}$" 
+         placeholder="+2519--------">
 
-               <!-- Category -->
-               <label for="category">Business Category:</label>
-               <select id="category" name="category" required>
-                   <option value="">Select Category</option>
-                   <option value="Music">Music</option>
-                   <option value="Sports">Sports</option>
-                   <option value="Education">Education</option>
-                   <option value="Business">Business</option>
-                   <option value="Arts">Arts</option>
-                   <option value="Food_Drink">Food & Drink</option>
-                   <option value="Festivals">Festivals</option>
-                   <option value="Nightlife">Nightlife</option>
-                   <option value="Family">Family</option>
-                   <option value="Spiritual">Spiritual</option>
-               </select>
 
-               <!-- Bank Name -->
-               <label for="bankName">Bank Name:</label>
-               <input type="text" id="bankName" name="bankName" placeholder="Bank Name" required>
+  <!-- Email -->
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" placeholder="Optional@example.com">
+        <!-- Role Dropdown -->
+        <label for="role">Role:</label>
+        <select id="role" name="role" required>
+          <option value="">Select your role</option>
+          <option value="Attendee">Attendee</option>
+          <option value="Organizer">Organizer</option>
+        </select>
+  <!-- Password -->
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" required minlength="6" placeholder="******">
 
-               <!-- Bank Account -->
-               <label for="accountNumber">Bank Account Number:</label>
-               <input type="text" id="accountNumber" name="accountNumber" placeholder="Account Number" required>
+  <!-- Submit -->
+  <button type="submit" class="register-btn">Submit</button>
+</form>
 
-               <!-- Additional Info -->
-               <label for="description">Additional Info (optional):</label>
-               <textarea id="description" name="description" rows="4" placeholder="Tell us more about your business..."></textarea>
-
-               <!-- Submit -->
-               <button type="submit" class="register-btn">Submit</button>
-           </form>
-
-           <div class="switch-text">
-               Already verified? <a href="/dashboard" class="switch-link">Go to Dashboard</a>
-           </div>
-
-       </div>
+    </div>
    </div>
-
    <div id="notification"></div>
 
-   <script>
-     const successMessages = <%- JSON.stringify(success) %>; // array from flash
-     const errorMessages = <%- JSON.stringify(error) %>;
+<div id="notification"></div>
 
-     const notification = document.getElementById("notification");
+<script>
+  const successMessages = <%- JSON.stringify(success) %>; // array from flash
+  const errorMessages = <%- JSON.stringify(error) %>;
 
-     if (successMessages.length) {
-       notification.textContent = successMessages[0];
-       notification.style.backgroundColor = "#4caf50"; // green
-       notification.classList.add("show");
-     } else if (errorMessages.length) {
-       notification.textContent = errorMessages[0];
-       notification.style.backgroundColor = "#f44336"; // red
-       notification.classList.add("show");
-     }
+  const notification = document.getElementById("notification");
 
-     setTimeout(() => {
-       notification.classList.remove("show");
-     }, 7000);
-   </script>
+  if (successMessages.length) {
+    notification.textContent = successMessages[0];
+    notification.style.backgroundColor = "#4caf50"; // green
+    notification.classList.add("show");
+  } else if (errorMessages.length) {
+    notification.textContent = errorMessages[0];
+    notification.style.backgroundColor = "#f44336"; // red
+    notification.classList.add("show");
+  }
 
-</body>
-</html>
+  setTimeout(() => {
+    notification.classList.remove("show");
+  }, 7000);
+</script>
+
+
+ </body>
+ </html>
