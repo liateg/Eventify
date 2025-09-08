@@ -15,7 +15,6 @@ datasource db {
 }
 
 // schema.prisma
-
 enum Role {
   Organizer
   Attendee
@@ -29,6 +28,19 @@ enum Status {
   soldout
 }
 
+enum Category {
+  Music
+  Sports
+  Education
+  Business
+  Arts
+  Food_Drink
+  Festivals
+  Nightlife
+  Family
+  Spiritual
+}
+
 model User {
   id            String          @id @default(uuid())
   email         String?         @unique
@@ -38,8 +50,12 @@ model User {
   role          Role            @default(Attendee)
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
-  Event         Event[]
-  RefreshTocken RefreshTocken[]
+  
+  // Relations
+  organizedEvents Event[]       @relation("UserOrganizedEvents")
+  purchases       Purchase[]    @relation("UserPurchases")
+  sales           Purchase[]    @relation("OrganizerSales")
+  refreshTokens   RefreshTocken[]
 }
 
 // Event model
@@ -50,10 +66,13 @@ model Event {
   date        DateTime
   location    String
   poster      String?
-  category    String
+  category    Category
   status      Status   @default(active)
-  organizer   User     @relation(fields: [organizerId], references: [id])
+  
+  // Organizer relation
+  organizer   User     @relation("UserOrganizedEvents", fields: [organizerId], references: [id])
   organizerId String
+
   tickets     Ticket[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -61,22 +80,70 @@ model Event {
 
 // Ticket model
 model Ticket {
-  id        String   @id @default(uuid())
-  type      String   @default("General") // default if no type is given
-  price     Float
-  quantity  Int
-  sold      Int      @default(0)
-  status    Status   @default(available)
-  event     Event    @relation(fields: [eventId], references: [id])
-  eventId   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          String        @id @default(uuid())
+  type        String        @default("General")
+  price       Float
+  quantity    Int
+  sold        Int           @default(0)
+  status      Status        @default(available)
+  
+  event       Event         @relation(fields: [eventId], references: [id])
+  eventId     String
+
+  TicketCycle TicketCycle[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
 }
 
 model RefreshTocken {
-  id String @id @default(uuid()) 
-  user   User   @relation(fields: [userId], references: [id])
+  id     String   @id @default(uuid())
+  user   User     @relation(fields: [userId], references: [id])
   userId String
-  token String
+  token  String
   expiry DateTime
+}
+
+model Purchase {
+  id             String   @id @default(uuid())
+  
+  // Buyer
+  user           User     @relation("UserPurchases", fields: [user_id], references: [id])
+  user_id        String
+
+  // Organizer (seller/receiver)
+  organizer      User     @relation("OrganizerSales", fields: [organizer_id], references: [id])
+  organizer_id   String
+
+  // Payment details
+  tx_ref         String   @unique
+  chapa_tx_id    String?
+  amount         Float
+  currency       String   @default("ETB")
+  status         String   @default("pending") // pending, success, failed
+  payment_method String?
+  raw_response   Json?
+
+  // Chapa payout account
+  subaccountId   String? 
+
+  // Relations
+  cycles         TicketCycle[]
+
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
+}
+
+// TicketCycle (ticket instance tied to a purchase)
+model TicketCycle {
+  id          String    @id @default(uuid())
+  
+  purchase    Purchase  @relation(fields: [purchase_id], references: [id])
+  purchase_id String
+
+  ticket      Ticket    @relation(fields: [ticket_id], references: [id])
+  ticket_id   String
+
+  is_used     Boolean   @default(false)
+  used_at     DateTime?
+  is_expired  Boolean   @default(false)
 }
