@@ -71,26 +71,5 @@
 
    <div id="notification"></div>
 
-   <script>
-     const successMessages = <%- JSON.stringify(success) %>; // array from flash
-     const errorMessages = <%- JSON.stringify(error) %>;
-
-     const notification = document.getElementById("notification");
-
-     if (successMessages.length) {
-       notification.textContent = successMessages[0];
-       notification.style.backgroundColor = "#4caf50"; // green
-       notification.classList.add("show");
-     } else if (errorMessages.length) {
-       notification.textContent = errorMessages[0];
-       notification.style.backgroundColor = "#f44336"; // red
-       notification.classList.add("show");
-     }
-
-     setTimeout(() => {
-       notification.classList.remove("show");
-     }, 7000);
-   </script>
-
 </body>
 </html>
