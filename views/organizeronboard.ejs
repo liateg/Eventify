@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+
+   <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
+   <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-straight/css/uicons-thin-straight.css'>
+   <link rel="stylesheet" href="/style.css">
+   <title>Organizer Onboarding</title>
+</head>
+<body>
+
+   <!-- Hero Section -->
+   <div class="hero">
+       <h1>Organizer Onboarding</h1>
+       <p>Welcome! Please provide your business information below for verification. 
+          Once verified, you can start creating and selling tickets for your events.
+       </p>
+   </div>
+
+   <!-- Onboarding Form -->
+   <div class="wrapper">
+       <div id="notification"></div>
+       <div class="container">
+
+           <form action="/organizer/onboard" method="POST" class="form-card">
+               <!-- Business Name -->
+               <label for="businessName">Business / Organization Name:</label>
+               <input type="text" id="businessName" name="businessName" placeholder="Your Business Name" required>
+
+               <!-- Category -->
+               <label for="category">Business Category:</label>
+               <select id="category" name="category" required>
+                   <option value="">Select Category</option>
+                   <option value="Music">Music</option>
+                   <option value="Sports">Sports</option>
+                   <option value="Education">Education</option>
+                   <option value="Business">Business</option>
+                   <option value="Arts">Arts</option>
+                   <option value="Food_Drink">Food & Drink</option>
+                   <option value="Festivals">Festivals</option>
+                   <option value="Nightlife">Nightlife</option>
+                   <option value="Family">Family</option>
+                   <option value="Spiritual">Spiritual</option>
+               </select>
+
+               <!-- Bank Name -->
+               <label for="bankName">Bank Name:</label>
+               <input type="text" id="bankName" name="bankName" placeholder="Bank Name" required>
+
+               <!-- Bank Account -->
+               <label for="accountNumber">Bank Account Number:</label>
+               <input type="text" id="accountNumber" name="accountNumber" placeholder="Account Number" required>
+
+               <!-- Additional Info -->
+               <label for="description">Additional Info (optional):</label>
+               <textarea id="description" name="description" rows="4" placeholder="Tell us more about your business..."></textarea>
+
+               <!-- Submit -->
+               <button type="submit" class="register-btn">Submit</button>
+           </form>
+
+           <div class="switch-text">
+               Already verified? <a href="/dashboard" class="switch-link">Go to Dashboard</a>
+           </div>
+
+       </div>
+   </div>
+
+   <div id="notification"></div>
+
+   <script>
+     const successMessages = <%- JSON.stringify(success) %>; // array from flash
+     const errorMessages = <%- JSON.stringify(error) %>;
+
+     const notification = document.getElementById("notification");
+
+     if (successMessages.length) {
+       notification.textContent = successMessages[0];
+       notification.style.backgroundColor = "#4caf50"; // green
+       notification.classList.add("show");
+     } else if (errorMessages.length) {
+       notification.textContent = errorMessages[0];
+       notification.style.backgroundColor = "#f44336"; // red
+       notification.classList.add("show");
+     }
+
+     setTimeout(() => {
+       notification.classList.remove("show");
+     }, 7000);
+   </script>
+
+</body>
+</html>
