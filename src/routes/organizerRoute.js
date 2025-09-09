@@ -36,6 +36,9 @@ router.post("/edit/:id",authenticateToken,editPost)
 router.post("/hold/:id",authenticateToken,pauseEvent)
 router.get("/myevents",authenticateToken,getMyEvents)
 router.get("/",authenticateToken,activeEvents)
+router.get("/onboard",(req,res)=>{
+  res.render("organizeronboard.ejs")
+})
 router.get("/create",authenticateToken,(req,res)=>{
     res.render("createEvent.ejs",{userId:req.user.id})
 })
