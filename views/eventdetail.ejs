@@ -75,12 +75,13 @@
           <div class="ticket-price">$224.97 <small style="text-decoration: line-through; color:gray;">$269.97</small></div>
         </div>
         <div class="ticket-quantity">
-          <button>-</button>
-          <span>1</span>
-          <button>+</button>
+          <button id="minus">-</button>
+          <span id="quantity">1</span>
+          <button id="add">+</button>
         </div>
         <div class="ticket-price">Total: $89.99</div>
-        <button class="festival-btn">Add to Cart</button>
+        <form action="/purchase" method="get">
+        <button type="submit" class="festival-btn">Buy Ticket</button></form>
       </div>
 
       <hr class="divider-line">
@@ -98,5 +99,24 @@
       </div>
     </div>
   </div>
+  <script>
+    const quantity=document.getElementById("quantity")
+    let amount=1
+    const minus=document.getElementById("minus")
+    const add=document.getElementById("add")
+    quantity.textContent=amount
+const limit=4
+    add.addEventListener("click",()=>{
+     if(amount<limit)
+     { amount++
+      quantity.textContent=amount}
+    })
+
+      minus.addEventListener("click",()=>{
+    if (amount>1){  amount--
+      quantity.textContent=amount}
+    })
+
+  </script>
 </body>
 </html>
