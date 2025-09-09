@@ -21,7 +21,12 @@ if(!userId){
             data:{name,email,phoneNumber,role,passwordHash}
         })
          req.flash("success", "Registration Successful!");
-    res.redirect("/login"); // redirect to login
+
+    if(user.role=="Attendee"){
+        res.redirect("/login"); // redirect to login
+}else if(user.role=="Organizer"){
+        res.redirect("/org/onboard"); // redirect to login
+}
         // return res.render("login.ejs",{success:true,message:"Sussefully Registered"})
     //  return res.status(201).json({ success:true,data:user});
     }else{
@@ -30,6 +35,7 @@ if(!userId){
         // return res.status(400).json({ success:false ,error:"Phovvvne number already rigestered"});
     }}
     catch(error){
+        console.log(error.message)
           req.flash("error", "Registration Failed. Try again.");
     res.redirect("/register");
         // return res.render("home.ejs",{success:false,message:error.message})
