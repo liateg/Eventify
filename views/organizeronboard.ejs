@@ -118,6 +118,7 @@
                    <option value="Nightlife">Nightlife</option>
                    <option value="Family">Family</option>
                    <option value="Spiritual">Spiritual</option>
+                   <option value="Other">Other</option>
                </select>
 
                <!-- Bank Name -->
@@ -128,10 +129,7 @@
                <label for="accountNumber">Bank Account Number:</label>
                <input type="text" id="accountNumber" name="accountNumber" placeholder="Account Number" required>
 
-               <!-- Additional Info -->
-               <label for="description">Additional Info (optional):</label>
-               <textarea id="description" name="description" rows="4" placeholder="Tell us more about your business..."></textarea>
-
+               
                <!-- Submit -->
                <button type="submit" class="register-btn">Submit</button>
            </form>
@@ -145,26 +143,7 @@
 
    <div id="notification"></div>
 
-   <script>
-     const successMessages = <%- JSON.stringify(success) %>; // array from flash
-     const errorMessages = <%- JSON.stringify(error) %>;
-
-     const notification = document.getElementById("notification");
-
-     if (successMessages.length) {
-       notification.textContent = successMessages[0];
-       notification.style.backgroundColor = "#4caf50"; // green
-       notification.classList.add("show");
-     } else if (errorMessages.length) {
-       notification.textContent = errorMessages[0];
-       notification.style.backgroundColor = "#f44336"; // red
-       notification.classList.add("show");
-     }
-
-     setTimeout(() => {
-       notification.classList.remove("show");
-     }, 7000);
-   </script>
+ 
 
 </body>
 </html>
