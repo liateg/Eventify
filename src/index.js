@@ -16,7 +16,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
-// app.use(flash());
+ app.use(flash());
 
 // Make flash messages available in EJS templates
 app.use(flashMiddleware);
