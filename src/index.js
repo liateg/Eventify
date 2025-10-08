@@ -36,5 +36,5 @@ app.get("/login",(req,res)=>{
 
 app.listen(PORT,()=>{
    
-    //  console.log(`Runneing on port ${PORT}`)
+     console.log(`Runneing on port ${PORT}`)
 })
